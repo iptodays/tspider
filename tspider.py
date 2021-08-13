@@ -38,7 +38,10 @@ def login():
     username.send_keys(username_value)
     password.send_keys(password_value)
     password.send_keys(Keys.RETURN)
-    input('页面跳转完完成后，点击任意键继续')
+    input('页面若已发生变化，点击任意键继续')
+    if driver.current_url.startswith(twitter+'/login'):
+        login()
+        return
     challenge = None
     try:
         driver.find_element_by_id('challenge_response')
